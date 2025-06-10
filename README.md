@@ -6,11 +6,74 @@ RiskWise Analytics is a next-generation investment platform specializing in inte
 
 ## Features
 
-### Phase 1: Market Beta Engine (Current Focus)
-- Real-time market data visualization
-- Historical PE ratio analysis
-- Market valuation percentiles
-- Regression-based return forecasting
+
+### 1. Market Beta Dashboard (Left Panel)
+- Real-time valuation metrics for global markets:
+  - **Americas**
+    - 🇺🇸 S&P 500
+    - 🇺🇸 NASDAQ
+  - **Asia**
+    - 🇭🇰 Hang Seng Index
+    - 🇨🇳 CSI 300
+    - 🇮🇳 NIFTY 50
+    - 🇮🇳 SENSEX
+    - 🇯🇵 Nikkei 225
+    - 🇸🇬 STI
+  - **Europe**
+    - 🇪🇺 Euro Stoxx 50
+  - **Oceania**
+    - 🇦🇺 ASX 200
+  - Key Metrics:
+    - PE ratios with historical context
+    - PB ratios and dividend yields
+    - Beta analysis for individual stocks
+- Valuation percentiles across time horizons:
+  - 3yr, 5yr, 10yr, 20yr, all-time
+- Forward-looking return projections:
+  - Statistical forecasts based on current valuation regimes
+  - PE mean reversion analysis
+  - Historical percentile analysis
+  - Beta analysis tool for individual stocks vs. indices
+
+### 2. Stock Alpha Analyzer (Center Panel)
+- Buffett-inspired fundamental analysis:
+  - ROE analysis
+  - Debt-to-equity ratio
+  - Free cash flow yield
+  - PE ratio percentile
+  - Revenue growth
+  - Profit margin
+- AI-Powered Risk Profiler:
+  - Interactive questionnaires
+  - Competitor benchmarking
+  - Management quality assessment
+
+### 3. Strategy Fitness Lab (Right Panel)
+- Backtesting environment for:
+  - Market-making strategies
+  - Statistical arbitrage
+  - Liquidity provision
+- Latency Competitiveness Audit:
+  - Microsecond-level performance analysis
+  - Infrastructure requirements
+  - Family office readiness assessment
+
+## Latest Updates
+
+### v1.2.0 - 2025-06-10
+- Added new market indices:
+  - NIFTY 50 (India)
+  - SENSEX (India)
+  - STI (Singapore)
+  - ASX 200 (Australia)
+- Enhanced market selection with region grouping
+- Added beta analysis tool for individual stocks
+- Improved data visualization and loading states
+
+### v1.1.0 - 2025-05-20
+- Initial release with core market beta analysis
+- Basic market data visualization
+- Historical PE ratio tracking
 
 ## Getting Started
 

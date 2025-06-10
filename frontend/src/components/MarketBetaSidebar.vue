@@ -9,24 +9,27 @@
         <div class="mb-3">
           <label class="form-label small text-muted mb-1">Select Market</label>
           <select v-model="selectedMarket" class="form-select form-select-sm">
-            <option v-for="market in availableMarkets" :key="market.id" :value="market.id">
-              {{ market.name }}
-            </option>
+            <optgroup v-for="(markets, region) in groupedMarkets" :key="region" :label="region">
+              <option v-for="market in markets" :key="market.id" :value="market.id">
+                {{ market.name }}
+              </option>
+            </optgroup>
           </select>
         </div>
         
         <!-- Time Horizon -->
         <div class="mb-3">
           <label class="form-label small text-muted mb-1">Time Horizon</label>
-          <div class="btn-group w-100" role="group">
+          <div class="d-flex flex-column gap-2">
             <button 
               v-for="period in timePeriods" 
               :key="period.value"
               @click="selectTimePeriod(period.value)"
-              class="btn btn-sm"
+              class="btn btn-sm text-start d-flex justify-content-between align-items-center"
               :class="[selectedTimePeriod === period.value ? 'btn-primary' : 'btn-outline-secondary']"
             >
-              {{ period.label }}
+              <span>{{ period.label }}</span>
+              <small class="opacity-75 ms-2">{{ period.description }}</small>
             </button>
           </div>
         </div>
@@ -79,7 +82,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, ref, watch, computed } from 'vue';
 
 export default defineComponent({
   name: 'MarketBetaSidebar',
@@ -94,23 +97,36 @@ export default defineComponent({
     const selectedMarket = ref('sp500');
     const selectedTimePeriod = ref('1y');
     
-    const availableMarkets = [
-      { id: 'sp500', name: 'S&P 500' },
-      { id: 'nasdaq', name: 'NASDAQ' },
-      { id: 'hsi', name: 'Hang Seng' },
-      { id: 'csi300', name: 'CSI 300' },
-      { id: 'eurostoxx', name: 'Euro Stoxx 50' },
-      { id: 'nikkei', name: 'Nikkei 225' },
-    ];
+    const availableMarkets = ref([
+      { id: 'sp500', name: ' S&P 500', region: 'US' },
+      { id: 'nasdaq', name: ' NASDAQ', region: 'US' },
+      { id: 'hsi', name: ' Hang Seng', region: 'Asia' },
+      { id: 'csi300', name: ' CSI 300', region: 'Asia' },
+      { id: 'nifty50', name: ' NIFTY 50', region: 'Asia' },
+      { id: 'sensex', name: ' SENSEX', region: 'Asia' },
+      { id: 'stoxx50', name: ' Euro Stoxx 50', region: 'Europe' },
+      { id: 'nikkei', name: ' Nikkei 225', region: 'Asia' },
+      { id: 'straits', name: ' STI', region: 'Asia' },
+      { id: 'asx200', name: ' ASX 200', region: 'Oceania' },
+    ]);
+    
+    const groupedMarkets = computed(() => {
+      const groups: Record<string, Array<{id: string; name: string; region: string}>> = {};
+      availableMarkets.value.forEach(market => {
+        if (!groups[market.region]) {
+          groups[market.region] = [];
+        }
+        groups[market.region].push(market);
+      });
+      return groups;
+    });
     
     const timePeriods = [
-      { label: '1M', value: '1m' },
-      { label: '3M', value: '3m' },
-      { label: '6M', value: '6m' },
-      { label: 'YTD', value: 'ytd' },
-      { label: '1Y', value: '1y' },
-      { label: '5Y', value: '5y' },
-      { label: 'Max', value: 'max' },
+      { label: '3Y', value: '3y', description: '3 Years' },
+      { label: '5Y', value: '5y', description: '5 Years' },
+      { label: '10Y', value: '10y', description: '10 Years' },
+      { label: '20Y', value: '20y', description: '20 Years' },
+      { label: 'All Time', value: 'all', description: 'All Historical Data' },
     ];
     
     const valuationMetrics = ref({
@@ -130,6 +146,9 @@ export default defineComponent({
     
     const selectTimePeriod = (period: string) => {
       selectedTimePeriod.value = period;
+      // Update the chart data based on the selected time period
+      // This would typically involve an API call to fetch data for the selected period
+      console.log(`Selected time period: ${period}`);
       updateParent();
     };
     
@@ -221,10 +240,42 @@ export default defineComponent({
   font-weight: 600;
 }
 
-/* Button group */
-.btn-group .btn {
-  font-size: 0.7rem;
-  padding: 0.2rem 0.4rem;
+/* Time period selector */
+.time-period-selector .btn {
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  border: 1px solid #dee2e6;
+}
+
+.time-period-selector .btn:hover {
+  background-color: #f8f9fa;
+}
+
+.time-period-selector .btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.time-period-selector .btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+.time-period-selector .btn small {
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.time-period-selector .btn-primary small {
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* Form switch */

@@ -8,6 +8,14 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
+    path: '/market-beta',
+    name: 'market-beta',
+    component: () => import('../views/MarketBeta.vue'),
+    meta: {
+      title: 'Market Beta Dashboard'
+    }
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('../views/AboutView.vue'),

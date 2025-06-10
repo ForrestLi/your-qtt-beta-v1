@@ -22,12 +22,17 @@
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
                 <router-link class="nav-link" to="/">
-                  Home
+                  <i class="fas fa-home me-1"></i> Home
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/market-beta">
+                  <i class="fas fa-chart-bar me-1"></i> Market Beta
                 </router-link>
               </li>
               <li class="nav-item">
                 <router-link class="nav-link" to="/about">
-                  About
+                  <i class="fas fa-info-circle me-1"></i> About
                 </router-link>
               </li>
             </ul>
