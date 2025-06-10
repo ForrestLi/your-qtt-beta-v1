@@ -1,0 +1,100 @@
+// 1. Import Bootstrap with configuration
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+// 2. Override Bootstrap variables
+$primary: #4361ee;
+$secondary: #3f37c9;
+$success: #4bb543;
+$info: #4895ef;
+$warning: #f7b801;
+$danger: #f72585;
+$light: #f8f9fa;
+$dark: #212529;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark
+);
+
+// 3. Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// 6. Custom styles below this line
+
+// Base styles
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+// Code blocks
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  background-color: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+// Links
+a {
+  color: $primary;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: darken($primary, 10%);
+    text-decoration: underline;
+  }
+}
+
+// App layout
+.app-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+// Header
+.app-header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+// Main content
+.main-content {
+  padding: 2rem 0;
+  min-height: calc(100vh - 200px); // Adjust based on header/footer height
+}
+
+// Footer
+.app-footer {
+  background-color: $light;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid darken($light, 5%);
+}
+
+// Responsive adjustments
+@media (max-width: 767.98px) {
+  .main-content {
+    padding: 1rem 0;
+  }
+}
