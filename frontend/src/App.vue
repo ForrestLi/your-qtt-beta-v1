@@ -31,6 +31,11 @@
                 </router-link>
               </li>
               <li class="nav-item">
+                <router-link class="nav-link" to="/stock-alpha">
+                  <i class="fas fa-chart-line me-1"></i> Stock Alpha
+                </router-link>
+              </li>
+              <li class="nav-item">
                 <router-link class="nav-link" to="/about">
                   <i class="fas fa-info-circle me-1"></i> About
                 </router-link>

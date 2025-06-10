@@ -16,6 +16,14 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/stock-alpha',
+    name: 'stock-alpha',
+    component: () => import('../views/StockAlpha.vue'),
+    meta: {
+      title: 'Stock Alpha Analyzer'
+    }
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('../views/AboutView.vue'),
